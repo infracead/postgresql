@@ -1,0 +1,14 @@
+CONFIG set sysvshm=new
+RESTART
+ARG VERSION=13
+ARG USER=cead
+ARG PASSWORD=DDA0E0F1#
+PKG postgresql${VERSION}-server
+PKG sudo
+SYSRC postgresql_enable=YES
+CMD if [ ! -e /var/db/postgres/data${VERSION} ];then service postgresql initdb; service postgresql start; fi
+CMD echo 'host    all             all             all                     md5' >> /var/db/postgres/data${VERSION}/pg_hba.conf
+CMD echo "listen_addresses = '*'" >> /var/db/postgres/data${VERSION}/postgresql.conf
+CMD echo "port = 5432" >> /var/db/postgres/data${VERSION}/postgresql.conf
+SERVICE postgresql restart
+CMD sudo -u postgres psql -c "CREATE ROLE ${USER} WITH SUPERUSER LOGIN ENCRYPTED PASSWORD '${PASSWORD}'"
