@@ -11,4 +11,6 @@ CMD echo 'host    all             all             all                     md5' >
 CMD echo "listen_addresses = '*'" >> /var/db/postgres/data${VERSION}/postgresql.conf
 CMD echo "port = 5432" >> /var/db/postgres/data${VERSION}/postgresql.conf
 SERVICE postgresql restart
-CMD sudo -u postgres psql -c "CREATE ROLE ${USER} WITH SUPERUSER LOGIN ENCRYPTED PASSWORD '${PASSWORD}'"
+CMD sudo -u postgres psql -c "CREATE ROLE ${USER} WITH SUPERUSER LOGIN PASSWORD '${PASSWORD}'"
+CMD sudo -u postgres psql -c "CREATE DATABASE cead"
+RDR 5432 5432
