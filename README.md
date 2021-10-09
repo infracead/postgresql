@@ -3,7 +3,7 @@
 #### Use
 
 ```bash
-root@manunggul [ /usr/local/etc ] #: bastille template [container] https://github.com/infracead/postgresql.git
+root@manunggul [ /usr/local/etc ] #: bastille template [container] https://github.com/infracead/postgresql
 ```
 
 #### Change user, password and version
